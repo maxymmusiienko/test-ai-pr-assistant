@@ -23,13 +23,8 @@ public class GameOfLife {
 
     private boolean[][] gameField;
 
+    private int kopk;
 
-    /**
-     * Main method to start Game of Life.
-     *
-     * @param fileNameInput  name of input file
-     * @param fileNameOutput name of output file
-     */
     public void game(String fileNameInput, String fileNameOutput) {
 
         initGame(fileNameInput);
@@ -39,12 +34,6 @@ public class GameOfLife {
         writeResultToFile(fileNameOutput);
     }
 
-    /**
-     * Reads input file, initializes init params for game: gameField, row, column and generation
-     * count.
-     *
-     * @param inputFile name of input file
-     */
     private void initGame(String inputFile) {
 
         try {
@@ -82,11 +71,6 @@ public class GameOfLife {
         }
     }
 
-    /**
-     * Logs an error message if any exception occurs on program startup.
-     *
-     * @param ex thrown exception
-     */
     private void logErrorsToFile(Throwable ex) {
         try {
             Path newFile = Paths.get(this.getClass().getResource("/").toURI()).resolve(LOG_FILE);
@@ -103,43 +87,20 @@ public class GameOfLife {
         }
     }
 
-    /**
-     * Inits current game field row with retrieved data from file.
-     *
-     * @param currentRow current row from file
-     * @param row        current row index in game field
-     */
     private void initRowInGameField(int currentRow, String[] row) {
         for (int i = 0; i < cols; i++) {
             this.gameField[currentRow][i] = mapCellToBoolean(row[i]);
         }
     }
 
-    /**
-     * Converts current cell from byte to String.
-     *
-     * @param cell current cell to map
-     * @return cell representation with String datatype
-     */
     private String mapCellToString(boolean cell) {
         return cell ? "X" : "O";
     }
 
-    /**
-     * Converts current cell from String to byte.
-     *
-     * @param cell current cell to map
-     * @return cell representation with byte datatype
-     */
     private boolean mapCellToBoolean(String cell) {
         return cell.equals("X");
     }
 
-    /**
-     * Writes state of gameFiled in output file.
-     *
-     * @param fileNameOutput name of output file
-     */
     private void writeResultToFile(String fileNameOutput) {
 
         try {
@@ -176,12 +137,6 @@ public class GameOfLife {
         return sb.toString();
     }
 
-    /**
-     * Counts amount of alive neighbors of current item.
-     *
-     * @param neighbors neighbors of current item
-     * @return int - amount of alive neighbors
-     */
     private int aliveCellsCount(boolean[] neighbors) {
         int count = 0;
 
@@ -226,13 +181,6 @@ public class GameOfLife {
         }
     }
 
-    /**
-     * Finds all neighbors of given current item.
-     *
-     * @param row current row index
-     * @param col current column index
-     * @return array of String - all neighbors of the current item
-     */
     private boolean[] getNeighbors(int row, int col) {
         boolean[] neighbors = new boolean[8];
 
@@ -251,6 +199,11 @@ public class GameOfLife {
             }
         }
         return neighbors;
+    }
+
+
+    private void g() {
+        System.out.println("kodpq");
     }
 
 }
